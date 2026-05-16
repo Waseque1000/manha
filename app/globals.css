@@ -71,3 +71,12 @@ h1, h2, h3, .kids-font {
 .bg-sunset-gradient {
   background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

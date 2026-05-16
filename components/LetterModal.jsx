@@ -77,7 +77,7 @@ export default function LetterModal({ item, onClose, onNext, onPrev }) {
             <FaChevronRight size={30} />
           </button>
 
-          <div className="relative z-10 flex flex-col items-center text-center gap-6 px-12">
+          <div className="relative z-10 flex flex-col items-center text-center gap-4 md:gap-6 px-4 md:px-12">
             <motion.span
               key={item.letter}
               initial={{ y: 20, opacity: 0 }}
@@ -88,14 +88,14 @@ export default function LetterModal({ item, onClose, onNext, onPrev }) {
                 scale: { repeat: Infinity, duration: 2 },
                 rotate: { repeat: Infinity, duration: 2 }
               }}
-              className={`text-9xl md:text-[12rem] font-black kids-font ${item.color.replace('bg-', 'text-')} drop-shadow-xl`}
+              className={`text-8xl md:text-[12rem] font-black kids-font ${item.color.replace('bg-', 'text-')} drop-shadow-xl`}
             >
               {item.letter}
             </motion.span>
             
             <div className="flex flex-col items-center gap-2">
-              <span className="text-5xl md:text-7xl mb-4">{item.emoji}</span>
-              <h2 className="text-4xl md:text-6xl font-bold kids-font text-gray-800">
+              <span className="text-4xl md:text-7xl mb-2 md:mb-4">{item.emoji}</span>
+              <h2 className="text-3xl md:text-6xl font-bold kids-font text-gray-800">
                 {item.word}
               </h2>
             </div>

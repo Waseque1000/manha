@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import TalkingTom from "@/components/TalkingTom";
+import Image from "next/image";
 import { FaPlay, FaGraduationCap } from "react-icons/fa";
 
 export default function Home() {
@@ -13,7 +13,15 @@ export default function Home() {
         transition={{ duration: 0.8 }}
         className="flex flex-col items-center gap-6"
       >
-        <TalkingTom />
+        <div className="relative w-64 h-64 md:w-80 md:h-80 mb-4 animate-bounce-slow">
+          <Image
+            src="/images/mascot.png"
+            alt="Mascot"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
 
         <h1 className="text-6xl md:text-8xl font-black kids-font text-primary drop-shadow-lg leading-tight">
           Welcome to <br />
@@ -25,22 +33,22 @@ export default function Home() {
           Discover letters, play games, and win stars! ⭐
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
-          <Link href="/learn">
+        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mt-8">
+          <Link href="/learn" className="w-full sm:w-auto">
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="flex items-center gap-3 px-10 py-6 bg-primary text-white rounded-full text-2xl font-bold shadow-xl cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center gap-3 px-6 md:px-10 py-4 md:py-6 bg-primary text-white rounded-full text-xl md:text-2xl font-bold shadow-xl cursor-pointer"
             >
               <FaPlay /> Start Learning
             </motion.div>
           </Link>
 
-          <Link href="/games">
+          <Link href="/games" className="w-full sm:w-auto">
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="flex items-center gap-3 px-10 py-6 bg-accent text-white rounded-full text-2xl font-bold shadow-xl cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center justify-center gap-3 px-6 md:px-10 py-4 md:py-6 bg-accent text-white rounded-full text-xl md:text-2xl font-bold shadow-xl cursor-pointer"
             >
               <FaGraduationCap /> Play Games
             </motion.div>

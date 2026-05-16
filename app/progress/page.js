@@ -44,17 +44,17 @@ export default function ProgressPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Alphabet Tracker */}
-        <div className="glass p-10 rounded-[3rem] shadow-2xl border-8 border-white">
-          <h2 className="text-3xl font-black kids-font text-gray-800 mb-8 flex items-center gap-3">
+        <div className="glass p-6 md:p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl border-4 md:border-8 border-white">
+          <h2 className="text-2xl md:text-3xl font-black kids-font text-gray-800 mb-6 md:mb-8 flex items-center gap-3">
             <FaCheckCircle className="text-accent" /> Alphabet Mastery
           </h2>
-          <div className="grid grid-cols-6 md:grid-cols-7 gap-3">
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 gap-2 md:gap-3">
             {alphabetData.map((item) => {
               const isLearned = learnedLetters.includes(item.letter);
               return (
                 <div
                   key={item.letter}
-                  className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center font-black text-xl transition-all ${
+                  className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-lg md:text-xl transition-all ${
                     isLearned 
                     ? "bg-accent text-white shadow-lg scale-110" 
                     : "bg-gray-100 text-gray-300"
@@ -68,23 +68,23 @@ export default function ProgressPage() {
         </div>
 
         {/* Favorite Letters */}
-        <div className="glass p-10 rounded-[3rem] shadow-2xl border-8 border-white">
-          <h2 className="text-3xl font-black kids-font text-gray-800 mb-8 flex items-center gap-3">
+        <div className="glass p-6 md:p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl border-4 md:border-8 border-white">
+          <h2 className="text-2xl md:text-3xl font-black kids-font text-gray-800 mb-6 md:mb-8 flex items-center gap-3">
             <FaHeart className="text-primary" /> Favorite Words
           </h2>
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {favorites.map((l) => {
               const item = alphabetData.find(a => a.letter === l);
               return (
                 <motion.div
                   key={l}
                   whileHover={{ x: 10 }}
-                  className="flex items-center gap-6 p-4 bg-white rounded-3xl shadow-sm border-2 border-gray-50"
+                  className="flex items-center gap-4 md:gap-6 p-4 bg-white rounded-2xl md:rounded-3xl shadow-sm border-2 border-gray-50"
                 >
-                  <span className="text-5xl">{item.emoji}</span>
+                  <span className="text-4xl md:text-5xl">{item.emoji}</span>
                   <div className="flex flex-col">
-                    <span className="text-2xl font-black kids-font text-gray-800">{item.word}</span>
-                    <span className="text-gray-400 font-bold">Mastered on May 15</span>
+                    <span className="text-xl md:text-2xl font-black kids-font text-gray-800">{item.word}</span>
+                    <span className="text-xs md:text-sm text-gray-400 font-bold">Mastered on May 15</span>
                   </div>
                   <div className="ml-auto flex text-yellow-400">
                     <FaStar /><FaStar /><FaStar />

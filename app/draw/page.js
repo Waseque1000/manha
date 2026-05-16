@@ -138,20 +138,20 @@ export default function DrawPage() {
         </motion.h1>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 w-full max-w-7xl px-6 flex-1 overflow-hidden">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-8 w-full max-w-7xl px-4 md:px-6 flex-1 overflow-hidden">
         {/* Left Toolbar - Crayons */}
-        <div className="flex lg:flex-col items-center justify-center gap-4 glass p-6 rounded-[3rem] shadow-xl border-4 border-white h-fit">
+        <div className="flex lg:flex-col items-center justify-center gap-2 md:gap-4 glass p-4 md:p-6 rounded-2xl md:rounded-[3rem] shadow-xl border-2 md:border-4 border-white h-fit overflow-x-auto no-scrollbar max-w-full">
           {colors.map((c) => (
             <motion.button
               key={c.hex}
-              whileHover={{ scale: 1.1, x: 10 }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setColor(c.hex)}
-              className={`relative group flex items-center justify-center`}
+              className={`relative flex-shrink-0`}
             >
               <div 
-                className={`w-12 h-24 rounded-t-full rounded-b-2xl shadow-lg transition-all ${
-                  color === c.hex ? "ring-4 ring-white ring-offset-4 ring-offset-primary scale-110" : "opacity-80"
+                className={`w-10 h-16 md:w-12 md:h-24 rounded-t-full rounded-b-xl md:rounded-b-2xl shadow-lg transition-all ${
+                  color === c.hex ? "ring-2 md:ring-4 ring-white ring-offset-2 md:ring-offset-4 ring-offset-primary scale-110" : "opacity-80"
                 }`}
                 style={{ backgroundColor: c.hex }}
               />
@@ -160,8 +160,8 @@ export default function DrawPage() {
         </div>
 
         {/* Canvas Area */}
-        <div className="flex-1 relative flex flex-col gap-4 overflow-hidden">
-          <div className="flex-1 wooden-frame bg-white relative overflow-hidden rounded-[2rem]">
+        <div className="flex-1 relative flex flex-col gap-4 overflow-hidden min-h-[300px]">
+          <div className="flex-1 wooden-frame bg-white relative overflow-hidden rounded-2xl md:rounded-[2rem]">
             <canvas
               onMouseDown={startDrawing}
               onMouseUp={finishDrawing}
@@ -176,43 +176,45 @@ export default function DrawPage() {
           </div>
 
           {/* Bottom Toolbar */}
-          <div className="glass p-4 rounded-full flex flex-wrap items-center justify-center gap-6 shadow-lg border-4 border-white mb-8">
-            <div className="flex items-center gap-3">
-              <FaPencilAlt className="text-gray-400" />
+          <div className="glass p-3 md:p-4 rounded-2xl md:rounded-full flex flex-wrap items-center justify-center gap-3 md:gap-6 shadow-lg border-2 md:border-4 border-white mb-4 md:mb-8">
+            <div className="flex items-center gap-2 md:gap-3">
+              <FaPencilAlt className="text-gray-400 text-sm md:text-base" />
               <input
                 type="range"
                 min="5"
                 max="50"
                 value={brushSize}
                 onChange={(e) => setBrushSize(parseInt(e.target.value))}
-                className="w-32 h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                className="w-20 md:w-32 h-2 md:h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
               />
             </div>
 
-            <div className="w-[2px] h-8 bg-gray-200" />
+            <div className="hidden md:block w-[2px] h-8 bg-gray-200" />
 
-            <button
-              onClick={() => setColor("white")}
-              className={`p-4 rounded-full transition-all flex items-center gap-2 font-bold ${
-                color === "white" ? "bg-accent text-white shadow-lg scale-110" : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-              }`}
-            >
-              <FaEraser size={20} /> Eraser
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setColor("white")}
+                className={`p-3 md:p-4 rounded-full transition-all flex items-center gap-2 font-bold text-sm md:text-base ${
+                  color === "white" ? "bg-accent text-white shadow-lg scale-110" : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                }`}
+              >
+                <FaEraser size={18} /> <span className="hidden xs:inline">Eraser</span>
+              </button>
 
-            <button
-              onClick={clearCanvas}
-              className="p-4 rounded-full bg-red-100 text-red-500 hover:bg-red-500 hover:text-white transition-all flex items-center gap-2 font-bold"
-            >
-              <FaTrash size={20} /> Clear
-            </button>
+              <button
+                onClick={clearCanvas}
+                className="p-3 md:p-4 rounded-full bg-red-100 text-red-500 hover:bg-red-500 hover:text-white transition-all flex items-center gap-2 font-bold text-sm md:text-base"
+              >
+                <FaTrash size={18} /> <span className="hidden xs:inline">Clear</span>
+              </button>
 
-            <button
-              onClick={downloadImage}
-              className="p-4 rounded-full bg-secondary text-white hover:scale-110 transition-all flex items-center gap-2 font-bold shadow-md"
-            >
-              <FaDownload size={20} /> Save My Art!
-            </button>
+              <button
+                onClick={downloadImage}
+                className="p-3 md:p-4 rounded-full bg-secondary text-white hover:scale-110 transition-all flex items-center gap-2 font-bold shadow-md text-sm md:text-base"
+              >
+                <FaDownload size={18} /> <span className="hidden xs:inline">Save Art!</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
