@@ -24,7 +24,7 @@ export default function Home() {
         </div>
 
         <h1 className="text-6xl md:text-8xl font-black kids-font text-primary drop-shadow-lg leading-tight">
-          Welcome to <br />
+          Welcome Pailot <br />
           <span className="text-secondary">Kids A-Z Learning!</span>
         </h1>
 
