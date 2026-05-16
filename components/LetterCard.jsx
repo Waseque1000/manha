@@ -2,9 +2,27 @@
 import { motion } from "framer-motion";
 
 export default function LetterCard({ item, onClick }) {
-  const speak = (text) => {
+  const speak = (letter, word) => {
+    const isBangla = /[\u0980-\u09FF]/.test(letter);
+    // Adding a comma for a slight pause: "অ, অজগর" or "A, Apple"
+    const text = isBangla ? `${letter}, ${word}` : `${letter}, for ${word}`;
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.8;
+    
+    utterance.rate = 0.6; // Slightly slower for clarity
+    
+    if (isBangla) {
+      utterance.lang = "bn-BD";
+      const voices = window.speechSynthesis.getVoices();
+      // Look for Google Bangla or local Bangla voices
+      const bnVoice = voices.find(v => v.lang.startsWith("bn")) || 
+                      voices.find(v => v.name.toLowerCase().includes("bangla"));
+      if (bnVoice) utterance.voice = bnVoice;
+    } else {
+      utterance.lang = "en-US";
+    }
+    
+    // Stop any current speech before starting new
+    window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utterance);
   };
 
@@ -13,7 +31,7 @@ export default function LetterCard({ item, onClick }) {
       whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0] }}
       whileTap={{ scale: 0.95 }}
       onClick={() => {
-        speak(`${item.letter} for ${item.word}`);
+        speak(item.letter, item.word);
         onClick(item);
       }}
       className={`relative cursor-pointer p-6 rounded-[2.5rem] ${item.color} ${item.shadow} shadow-xl border-4 border-white/40 flex flex-col items-center justify-center gap-2 group transition-all duration-300 h-48 w-full md:h-64`}

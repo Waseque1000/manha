@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import TalkingTom from "@/components/TalkingTom";
 import { FaPlay, FaGraduationCap } from "react-icons/fa";
 
 export default function Home() {
@@ -13,15 +13,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
         className="flex flex-col items-center gap-6"
       >
-        <div className="relative w-64 h-64 md:w-80 md:h-80 mb-4 animate-bounce-slow">
-          <Image
-            src="/images/mascot.png"
-            alt="Mascot"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+        <TalkingTom />
 
         <h1 className="text-6xl md:text-8xl font-black kids-font text-primary drop-shadow-lg leading-tight">
           Welcome to <br />

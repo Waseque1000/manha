@@ -7,9 +7,28 @@ export default function LetterModal({ item, onClose, onNext, onPrev }) {
   if (!item) return null;
 
   const speak = () => {
-    const utterance = new SpeechSynthesisUtterance(`${item.letter} for ${item.word}`);
-    utterance.rate = 0.7;
+    const isBangla = /[\u0980-\u09FF]/.test(item.letter);
+    // Standard educational format: "O, Ajogor"
+    const text = isBangla ? `${item.letter}, ${item.word}` : `${item.letter}, for ${item.word}`;
+    
+    // Cancel any existing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.6;
+    
+    if (isBangla) {
+      utterance.lang = "bn-BD";
+      const voices = window.speechSynthesis.getVoices();
+      const bnVoice = voices.find(v => v.lang.startsWith("bn")) || 
+                      voices.find(v => v.name.toLowerCase().includes("bangla"));
+      if (bnVoice) utterance.voice = bnVoice;
+    } else {
+      utterance.lang = "en-US";
+    }
+    
     window.speechSynthesis.speak(utterance);
+    
     confetti({
       particleCount: 100,
       spread: 70,
