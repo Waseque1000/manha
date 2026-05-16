@@ -67,13 +67,13 @@ export default function FindObjectGame() {
         key={target.letter}
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="glass p-12 rounded-[3rem] shadow-2xl flex flex-col items-center gap-8 mb-12 border-8 border-white w-full max-w-3xl"
+        className="glass p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-2xl flex flex-col items-center gap-6 md:gap-8 mb-8 md:mb-12 border-4 md:border-8 border-white w-full max-w-3xl"
       >
-        <span className="text-3xl md:text-4xl font-bold text-gray-600 kids-font">
+        <span className="text-2xl md:text-4xl font-bold text-gray-600 kids-font">
           Can you find the...
         </span>
         <div className="flex flex-col items-center">
-          <span className="text-6xl md:text-9xl font-black text-primary kids-font mb-4">
+          <span className="text-5xl md:text-9xl font-black text-primary kids-font mb-2 md:mb-4">
             {target.word}?
           </span>
           <button 

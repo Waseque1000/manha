@@ -18,8 +18,8 @@ const TalkingTom = () => {
     "Meow! I love learning with you!",
     "You're a superstar! ⭐",
     "Ready for an adventure?",
-    "সবাই কেমন আছো? চলো শিখি!",
-    "আজ কি পড়তে চাও?",
+    "What's your favorite letter?",
+    "You're doing amazing!",
   ];
 
   const [purring, setPurring] = useState(false);

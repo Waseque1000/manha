@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaHome, FaBookOpen, FaGamepad, FaPencilAlt, FaChartLine, FaInfoCircle } from "react-icons/fa";
+import { FaHome, FaBookOpen, FaGamepad, FaPencilAlt, FaChartLine, FaInfoCircle, FaCat, FaHashtag } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "Home", href: "/", icon: <FaHome /> },
   { name: "Learn A-Z", href: "/learn", icon: <FaBookOpen /> },
+  { name: "1-100", href: "/numbers", icon: <FaHashtag /> },
+  { name: "Talk Tom", href: "/tom", icon: <FaCat /> },
   { name: "Games", href: "/games", icon: <FaGamepad /> },
   { name: "Draw", href: "/draw", icon: <FaPencilAlt /> },
   { name: "Progress", href: "/progress", icon: <FaChartLine /> },

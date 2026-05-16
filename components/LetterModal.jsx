@@ -51,51 +51,62 @@ export default function LetterModal({ item, onClose, onNext, onPrev }) {
           initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
           animate={{ scale: 1, opacity: 1, rotate: 0 }}
           exit={{ scale: 0.5, opacity: 0, rotate: 10 }}
-          className={`relative w-full max-w-lg bg-white rounded-[3rem] p-8 shadow-2xl border-8 border-white overflow-hidden`}
+          className={`relative w-full max-w-2xl bg-white rounded-[2.5rem] md:rounded-[4rem] p-6 md:p-12 shadow-2xl border-4 md:border-8 border-white overflow-hidden`}
         >
           {/* Decorative Background */}
           <div className={`absolute inset-0 opacity-10 ${item.color}`} />
           
           <button
             onClick={onClose}
-            className="absolute top-6 right-6 p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-20"
+            className="absolute top-4 right-4 md:top-6 md:right-6 p-2 md:p-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-20"
           >
-            <FaTimes size={24} />
+            <FaTimes size={20} className="md:w-6 md:h-6" />
           </button>
 
           {/* Navigation Arrows */}
           <button
             onClick={(e) => { e.stopPropagation(); onPrev(); }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-white/80 hover:bg-white text-gray-700 rounded-full shadow-lg z-20 transition-all hover:scale-110 active:scale-95"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-4 bg-white/80 hover:bg-white text-gray-700 rounded-full shadow-lg z-20 transition-all hover:scale-110 active:scale-95"
           >
-            <FaChevronLeft size={30} />
+            <FaChevronLeft size={24} className="md:w-8 md:h-8" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); onNext(); }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-white/80 hover:bg-white text-gray-700 rounded-full shadow-lg z-20 transition-all hover:scale-110 active:scale-95"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-4 bg-white/80 hover:bg-white text-gray-700 rounded-full shadow-lg z-20 transition-all hover:scale-110 active:scale-95"
           >
-            <FaChevronRight size={30} />
+            <FaChevronRight size={24} className="md:w-8 md:h-8" />
           </button>
 
           <div className="relative z-10 flex flex-col items-center text-center gap-4 md:gap-6 px-4 md:px-12">
             <motion.span
               key={item.letter}
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1, scale: [1, 1.2, 1], rotate: [0, -5, 5, 0] }}
-              transition={{ 
-                opacity: { duration: 0.2 },
-                y: { duration: 0.3 },
-                scale: { repeat: Infinity, duration: 2 },
-                rotate: { repeat: Infinity, duration: 2 }
-              }}
-              className={`text-8xl md:text-[12rem] font-black kids-font ${item.color.replace('bg-', 'text-')} drop-shadow-xl`}
+              animate={{ y: 0, opacity: 1 }}
+              className={`text-6xl md:text-8xl font-black kids-font ${item.color.replace('bg-', 'text-')} drop-shadow-lg opacity-80`}
             >
               {item.letter}
             </motion.span>
             
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-4xl md:text-7xl mb-2 md:mb-4">{item.emoji}</span>
-              <h2 className="text-3xl md:text-6xl font-bold kids-font text-gray-800">
+            <div className="flex flex-col items-center gap-6">
+              <motion.span 
+                key={`${item.letter}-emoji`}
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ 
+                  scale: 1, 
+                  opacity: 1,
+                  y: [0, -20, 0],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{ 
+                  scale: { type: "spring", stiffness: 260, damping: 20 },
+                  y: { repeat: Infinity, duration: 4, ease: "easeInOut" },
+                  rotate: { repeat: Infinity, duration: 5, ease: "easeInOut" }
+                }}
+                className="text-[10rem] md:text-[15rem] drop-shadow-2xl leading-none"
+              >
+                {item.emoji}
+              </motion.span>
+              <h2 className="text-5xl md:text-8xl font-black kids-font text-gray-800 tracking-tight drop-shadow-sm">
                 {item.word}
               </h2>
             </div>
